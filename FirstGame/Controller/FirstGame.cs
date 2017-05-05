@@ -31,11 +31,11 @@ namespace FirstGame.Controller
 		private float playerMoveSpeed;
 
 		// Image used to display the static background
-		Texture2D mainBackground;
+		private Texture2D mainBackground;
 
 		// Parallaxing Layers
-		ParallaxingBackground bgLayer1;
-		ParallaxingBackground bgLayer2;
+		private ParallaxingBackground bgLayer1;
+		private ParallaxingBackground bgLayer2;
 
 
 		#endregion
