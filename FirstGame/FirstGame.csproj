@@ -42,6 +42,7 @@
     <Compile Include="Controller\FirstGame.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="View\Animation.cs" />
+    <Compile Include="View\ParallaxingBackground.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.manifest" />
