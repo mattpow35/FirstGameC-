@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using FirstGame.Model;
 using FirstGame.View;
+using System.Collections.Generic;
 
 namespace FirstGame.Controller
 {
@@ -37,6 +38,17 @@ namespace FirstGame.Controller
 		private ParallaxingBackground bgLayer1;
 		private ParallaxingBackground bgLayer2;
 
+		// Enemies
+		private Texture2D enemyTexture;
+		private List<Enemy> enemies;
+
+		// The rate at which the enemies appear
+		private TimeSpan enemySpawnTime;
+		private TimeSpan previousSpawnTime;
+
+		// A random number generator
+		private Random random;
+
 
 		#endregion
 
@@ -62,6 +74,18 @@ namespace FirstGame.Controller
 
 			bgLayer1 = new ParallaxingBackground();
 			bgLayer2 = new ParallaxingBackground();
+
+			// Initialize the enemies list
+			enemies = new List<Enemy>();
+
+			// Set the time keepers to zero
+			previousSpawnTime = TimeSpan.Zero;
+
+			// Used to determine how fast enemy respawns
+			enemySpawnTime = TimeSpan.FromSeconds(1.0f);
+
+			// Initialize our random number generator
+			random = new Random();
 
 			base.Initialize();
 		}
@@ -89,6 +113,8 @@ namespace FirstGame.Controller
 			// Load the parallaxing background
 			bgLayer1.Initialize(Content, "Texture/bgLayer1", GraphicsDevice.Viewport.Width, -1);
 			bgLayer2.Initialize(Content, "Texture/bgLayer2", GraphicsDevice.Viewport.Width, -2);
+
+			enemyTexture = Content.Load<Texture2D>("Animation/mineAnimation");
 
 			mainBackground = Content.Load<Texture2D>("Texture/mainbackground");
 		}
@@ -123,7 +149,54 @@ namespace FirstGame.Controller
 			bgLayer1.Update();
 			bgLayer2.Update();
 
+			// Update the enemies
+			UpdateEnemies(gameTime);
+
 			base.Update(gameTime);
+		}
+
+		private void AddEnemy()
+		{
+			// Create the animation object
+			Animation enemyAnimation = new Animation();
+
+			// Initialize the animation with the correct animation information
+			enemyAnimation.Initialize(enemyTexture, Vector2.Zero, 47, 61, 8, 30, Color.White, 1f, true);
+
+			// Randomly generate the position of the enemy
+			Vector2 position = new Vector2(GraphicsDevice.Viewport.Width + enemyTexture.Width / 2, random.Next(100, GraphicsDevice.Viewport.Height - 100));
+
+			// Create an enemy
+			Enemy enemy = new Enemy();
+
+			// Initialize the enemy
+			enemy.Initialize(enemyAnimation, position);
+
+			// Add the enemy to the active enemies list
+			enemies.Add(enemy);
+		}
+
+		private void UpdateEnemies(GameTime gameTime)
+		{
+			// Spawn a new enemy enemy every 1.5 seconds
+			if (gameTime.TotalGameTime - previousSpawnTime > enemySpawnTime)
+			{
+				previousSpawnTime = gameTime.TotalGameTime;
+
+				// Add an Enemy
+				AddEnemy();
+			}
+
+			// Update the Enemies
+			for (int i = enemies.Count - 1; i >= 0; i--)
+			{
+				enemies[i].Update(gameTime);
+
+				if (enemies[i].Active == false)
+				{
+					enemies.RemoveAt(i);
+				}
+			}
 		}
 
 		private void UpdatePlayer(GameTime gameTime)
@@ -178,13 +251,19 @@ namespace FirstGame.Controller
 			bgLayer1.Draw(spriteBatch);
 			bgLayer2.Draw(spriteBatch);
 
+			// Draw the Enemies
+			for (int i = 0; i < enemies.Count; i++)
+			{
+				enemies[i].Draw(spriteBatch);
+			}
+
+
 			// Draw the Player
 			player.Draw(spriteBatch);
 
 			// Stop drawing
 			spriteBatch.End();
 
-			//TODO: Add your drawing code here
 
 			base.Draw(gameTime);
 		}

@@ -11,7 +11,7 @@ namespace FirstGame.View
 		private Texture2D texture;
 
 		// An array of positions of the parallaxing background
-		private Vector2[] positions;
+		public Vector2[] positions;
 
 		// The speed which the background is moving
 		private int speed;

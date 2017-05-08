@@ -35,16 +35,28 @@ namespace FirstGame
 		private Rectangle destinationRect = new Rectangle();
 
 		// Width of a given frame
-		public int FrameWidth;
+		private int frameWidth;
+
+		public int FrameWidth
+		{
+			get { return frameWidth;}
+			set { frameWidth = value;}
+		}
 
 		// Height of a given frame
-		public int FrameHeight;
+		private int frameHeight;
+
+		public int FrameHeight
+		{
+			get { return frameHeight;}
+			set { frameHeight = value;}
+		}
 
 		// The state of the Animation
-		public bool Active;
+		private bool Active;
 
 		// Determines if the animation will keep playing or deactivate after one run
-		public bool Looping;
+		private bool Looping;
 
 		// Width of a given frame
 		public Vector2 Position;
