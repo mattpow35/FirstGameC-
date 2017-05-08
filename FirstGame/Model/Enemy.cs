@@ -17,15 +17,26 @@ namespace FirstGame
 
 		public bool Active
 		{
-			get { return active;}
-			set { active = value;}
+			get { return active; }
+			set { active = value; }
 		}
 
 		// The hit points of the enemy, if this goes to zero the enemy dies
-		private int Health;
+		private int health;
 
+		public int Health
+		{
+			get { return health;}
+			set { health = value;}
+		}
 		// The amount of damage the enemy inflicts on the player ship
-		private int Damage;
+		private int damage;
+
+		public int Damage
+		{
+			get { return damage;}
+			set { damage = value;}
+		}
 
 		// The amount of score the enemy will give to the player
 		private int Value;
