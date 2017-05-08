@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework.Input;
 using FirstGame.Model;
 using FirstGame.View;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace FirstGame.Controller
 {
@@ -59,6 +61,12 @@ namespace FirstGame.Controller
 		private Texture2D explosionTexture;
 		private List<Animation> explosions;
 
+		//Number that holds the player score
+		private int score;
+		// The font used to display UI elements
+		private SpriteFont font;
+
+
 
 		#endregion
 
@@ -104,6 +112,9 @@ namespace FirstGame.Controller
 
 			explosions = new List<Animation>();
 
+			//Set player's score to zero
+			score = 0;
+
 			base.Initialize();
 		}
 
@@ -136,6 +147,9 @@ namespace FirstGame.Controller
 			projectileTexture = Content.Load<Texture2D>("Texture/laser");
 
 			explosionTexture = Content.Load<Texture2D>("Animation/explosion");
+
+			// Load the score font
+			font = Content.Load<SpriteFont>("Font/gameFont");
 
 			mainBackground = Content.Load<Texture2D>("Texture/mainbackground");
 		}
@@ -326,6 +340,8 @@ namespace FirstGame.Controller
 					}
 
 					enemies.RemoveAt(i);
+					//Add to the player's score
+					score += enemies[i].Value;
 				}
 
 			}
@@ -374,6 +390,13 @@ namespace FirstGame.Controller
 
 				// Add the projectile, but add it to the front and center of the player
 				AddProjectile(player.Position + new Vector2(player.Width / 2, 0));
+			}
+
+			// reset score if player health goes to zero
+			if (player.Health <= 0)
+			{
+				player.Health = 100;
+				score = 0;
 			}
 		}
 
@@ -429,6 +452,11 @@ namespace FirstGame.Controller
 			{
 				explosions[i].Draw(spriteBatch);
 			}
+
+			// Draw the score
+			spriteBatch.DrawString(font, "score: " + score, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y), Color.White);
+			// Draw the player health
+			spriteBatch.DrawString(font, "health: " + player.Health, new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y + 30), Color.White);
 
 			// Stop drawing
 			spriteBatch.End();

@@ -39,7 +39,8 @@ namespace FirstGame
 		}
 
 		// The amount of score the enemy will give to the player
-		private int Value;
+		public int Value;
+
 
 		// Get the width of the enemy ship
 		public int Width
