@@ -56,6 +56,9 @@ namespace FirstGame.Controller
 		private TimeSpan fireTime;
 		private TimeSpan previousFireTime;
 
+		private Texture2D explosionTexture;
+		private List<Animation> explosions;
+
 
 		#endregion
 
@@ -99,6 +102,8 @@ namespace FirstGame.Controller
 			// Set the laser to fire every quarter second
 			fireTime = TimeSpan.FromSeconds(.15f);
 
+			explosions = new List<Animation>();
+
 			base.Initialize();
 		}
 
@@ -129,6 +134,8 @@ namespace FirstGame.Controller
 			enemyTexture = Content.Load<Texture2D>("Animation/mineAnimation");
 
 			projectileTexture = Content.Load<Texture2D>("Texture/laser");
+
+			explosionTexture = Content.Load<Texture2D>("Animation/explosion");
 
 			mainBackground = Content.Load<Texture2D>("Texture/mainbackground");
 		}
@@ -171,6 +178,10 @@ namespace FirstGame.Controller
 
 			// Update the projectiles
 			UpdateProjectiles();
+
+			// Update the explosions
+			UpdateExplosions(gameTime);
+
 
 
 			base.Update(gameTime);
@@ -217,6 +228,7 @@ namespace FirstGame.Controller
 
 			}
 
+
 			// Projectile vs Enemy Collision
 			for (int i = 0; i < projectiles.Count; i++)
 			{
@@ -237,6 +249,25 @@ namespace FirstGame.Controller
 						enemies[j].Health -= projectiles[i].Damage;
 						projectiles[i].Active = false;
 					}
+				}
+			}
+		}
+
+		private void AddExplosion(Vector2 position)
+		{
+			Animation explosion = new Animation();
+			explosion.Initialize(explosionTexture, position, 134, 134, 12, 45, Color.White, 1f, false);
+			explosions.Add(explosion);
+		}
+
+		private void UpdateExplosions(GameTime gameTime)
+		{
+			for (int i = explosions.Count - 1; i >= 0; i--)
+			{
+				explosions[i].Update(gameTime);
+				if (explosions[i].Active == false)
+				{
+					explosions.RemoveAt(i);
 				}
 			}
 		}
@@ -287,9 +318,18 @@ namespace FirstGame.Controller
 
 				if (enemies[i].Active == false)
 				{
+					// If not active and health <= 0
+					if (enemies[i].Health <= 0)
+					{
+						// Add an explosion
+						AddExplosion(enemies[i].Position);
+					}
+
 					enemies.RemoveAt(i);
 				}
+
 			}
+
 		}
 
 		private void UpdatePlayer(GameTime gameTime)
@@ -381,9 +421,14 @@ namespace FirstGame.Controller
 				projectiles[i].Draw(spriteBatch);
 			}
 
-
 			// Draw the Player
 			player.Draw(spriteBatch);
+
+			// Draw the explosions
+			for (int i = 0; i < explosions.Count; i++)
+			{
+				explosions[i].Draw(spriteBatch);
+			}
 
 			// Stop drawing
 			spriteBatch.End();

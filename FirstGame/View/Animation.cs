@@ -53,7 +53,13 @@ namespace FirstGame
 		}
 
 		// The state of the Animation
-		private bool Active;
+		private bool active;
+
+		public bool Active
+		{
+			get { return active;}
+			set { active = value;}
+		}
 
 		// Determines if the animation will keep playing or deactivate after one run
 		private bool Looping;
