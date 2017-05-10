@@ -142,7 +142,7 @@ namespace FirstGame.Controller
 			bgLayer1.Initialize(Content, "Texture/bgLayer1", GraphicsDevice.Viewport.Width, -1);
 			bgLayer2.Initialize(Content, "Texture/bgLayer2", GraphicsDevice.Viewport.Width, -2);
 
-			enemyTexture = Content.Load<Texture2D>("Animation/mineAnimation");
+			enemyTexture = Content.Load<Texture2D>("Animation/donkeyKongSprite");
 
 			projectileTexture = Content.Load<Texture2D>("Texture/laser");
 
@@ -292,7 +292,7 @@ namespace FirstGame.Controller
 			Animation enemyAnimation = new Animation();
 
 			// Initialize the animation with the correct animation information
-			enemyAnimation.Initialize(enemyTexture, Vector2.Zero, 47, 61, 8, 30, Color.White, 1f, true);
+			enemyAnimation.Initialize(enemyTexture, Vector2.Zero, 50, 50, 10, 30, Color.White, 1f, true);
 
 			// Randomly generate the position of the enemy
 			Vector2 position = new Vector2(GraphicsDevice.Viewport.Width + enemyTexture.Width / 2, random.Next(100, GraphicsDevice.Viewport.Height - 100));
@@ -337,11 +337,17 @@ namespace FirstGame.Controller
 					{
 						// Add an explosion
 						AddExplosion(enemies[i].Position);
+
+						enemies.RemoveAt(i);
+						//Add to the player's score
+						score += enemies[i].Value;
+					}
+					else
+					{
+						enemies.RemoveAt(i);
+						player.Health -= 5;
 					}
 
-					enemies.RemoveAt(i);
-					//Add to the player's score
-					score += enemies[i].Value;
 				}
 
 			}
