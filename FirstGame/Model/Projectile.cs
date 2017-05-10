@@ -47,7 +47,7 @@ namespace FirstGame
 
 			Damage = 2;
 
-			projectileMoveSpeed = 20f;
+			projectileMoveSpeed = 6f;
 		}
 
 
