@@ -132,7 +132,7 @@ namespace FirstGame.Controller
 			// Load the player resources
 			Animation playerAnimation = new Animation();
 			Texture2D playerTexture = Content.Load<Texture2D>("Animation/smallerMario");
-			playerAnimation.Initialize(playerTexture, Vector2.Zero, 60, 88, 5, 30, Color.White, 1f, true);
+			playerAnimation.Initialize(playerTexture, Vector2.Zero, 60, 88, 5, 50, Color.White, 1f, true);
 
 			Vector2 playerPosition = new Vector2(GraphicsDevice.Viewport.TitleSafeArea.X, GraphicsDevice.Viewport.TitleSafeArea.Y
 			+ GraphicsDevice.Viewport.TitleSafeArea.Height / 2);
@@ -293,7 +293,7 @@ namespace FirstGame.Controller
 			Animation enemyAnimation = new Animation();
 
 			// Initialize the animation with the correct animation information
-			enemyAnimation.Initialize(enemyTexture, Vector2.Zero, 50, 50, 10, 30, Color.White, 1f, true);
+			enemyAnimation.Initialize(enemyTexture, Vector2.Zero, 50, 50, 10, 60, Color.White, 1f, true);
 
 			// Randomly generate the position of the enemy
 			Vector2 position = new Vector2(GraphicsDevice.Viewport.Width + enemyTexture.Width / 2, random.Next(100, GraphicsDevice.Viewport.Height - 100));
@@ -314,7 +314,7 @@ namespace FirstGame.Controller
 			Animation barrelAnimation = new Animation();
 
 			// Initialize the animation with the correct animation information
-			barrelAnimation.Initialize(barrelTexture, Vector2.Zero, 28, 36, 8, 30, Color.White, 1f, true);
+			barrelAnimation.Initialize(barrelTexture, Vector2.Zero, 28, 36, 8, 75, Color.White, 1f, true);
 
 
 			// Create an enemy
@@ -420,7 +420,7 @@ namespace FirstGame.Controller
 			{
 				barrels[i].Update(gameTime);
 
-				if (barrels[i].Active == false)
+				if (barrels[i].Active == false )
 				{
 					barrels.RemoveAt(i);
 				}
