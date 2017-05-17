@@ -139,8 +139,8 @@ namespace FirstGame.Controller
 			player.Initialize(playerAnimation, playerPosition);
 
 			// Load the parallaxing background
-			bgLayer1.Initialize(Content, "Texture/bgLayer1", GraphicsDevice.Viewport.Width, -1);
-			bgLayer2.Initialize(Content, "Texture/bgLayer2", GraphicsDevice.Viewport.Width, -2);
+			bgLayer1.Initialize(Content, "Background/marioBackgroundLayer3", GraphicsDevice.Viewport.Width, -1);
+			bgLayer2.Initialize(Content, "Background/marioBackgroundLayer1", GraphicsDevice.Viewport.Width, -2);
 
 			enemyTexture = Content.Load<Texture2D>("Animation/donkeyKongSprite");
 
@@ -152,7 +152,7 @@ namespace FirstGame.Controller
 			// Load the score font
 			font = Content.Load<SpriteFont>("Font/gameFont");
 
-			mainBackground = Content.Load<Texture2D>("Texture/mainbackground");
+			mainBackground = Content.Load<Texture2D>("Background/marioBackgroundLayer2");
 		}
 
 		/// <summary>
