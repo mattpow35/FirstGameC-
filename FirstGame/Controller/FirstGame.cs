@@ -396,7 +396,7 @@ namespace FirstGame.Controller
 			{
 				player.Position.Y += playerMoveSpeed;
 			}
-			if (currentKeyboardState.IsKeyDown(Keys.Space) || currentGamePadState.IsButtonDown(Buttons.A))
+			if (currentKeyboardState.IsKeyDown(Keys.Space) && previousKeyboardState.IsKeyUp(Keys.Space))
 			{
 				AddProjectile();
 			}
