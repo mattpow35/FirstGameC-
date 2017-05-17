@@ -63,7 +63,7 @@ namespace FirstGame
 
 
 			// Set the amount of damage the enemy can do
-			Damage = 2;
+			Damage = 3;
 
 			// Set how fast the enemy moves
 			barrelMoveSpeed = 6f;
