@@ -293,7 +293,7 @@ namespace FirstGame.Controller
 			Animation enemyAnimation = new Animation();
 
 			// Initialize the animation with the correct animation information
-			enemyAnimation.Initialize(enemyTexture, Vector2.Zero, 50, 50, 10, 60, Color.White, 1f, true);
+			enemyAnimation.Initialize(enemyTexture, Vector2.Zero, 100, 100, 10, 40, Color.White, 1f, true);
 
 			// Randomly generate the position of the enemy
 			Vector2 position = new Vector2(GraphicsDevice.Viewport.Width + enemyTexture.Width / 2, random.Next(100, GraphicsDevice.Viewport.Height - 100));
