@@ -314,7 +314,7 @@ namespace FirstGame.Controller
 			Animation barrelAnimation = new Animation();
 
 			// Initialize the animation with the correct animation information
-			barrelAnimation.Initialize(barrelTexture, Vector2.Zero, 28, 36, 8, 75, Color.White, 1f, true);
+			barrelAnimation.Initialize(barrelTexture, Vector2.Zero, 50, 64, 8, 75, Color.White, 1f, true);
 
 
 			// Create an enemy
