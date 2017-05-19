@@ -2,8 +2,13 @@
   <MonoDevelop.Ide.ItemProperties.FirstGame PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="FirstGame/Model/Enemy.cs">
     <Files>
+<<<<<<< Updated upstream
       <File FileName="FirstGame/Model/Barrel.cs" Line="66" Column="14" />
       <File FileName="FirstGame/Model/Enemy.cs" Line="76" Column="16" />
+=======
+      <File FileName="FirstGame/Model/Barrel.cs" Line="1" Column="1" />
+      <File FileName="FirstGame/Controller/FirstGame.cs" Line="317" Column="66" />
+>>>>>>> Stashed changes
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
