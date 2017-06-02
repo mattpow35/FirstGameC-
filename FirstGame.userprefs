@@ -1,13 +1,18 @@
 ﻿<Properties StartupConfiguration="{01CBF629-95A7-47E7-9B60-E2E5DBB9F20B}|Default">
   <MonoDevelop.Ide.ItemProperties.FirstGame PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="FirstGame/Model/Enemy.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="FirstGame/Model/Player.cs">
     <Files>
 <<<<<<< Updated upstream
       <File FileName="FirstGame/Model/Barrel.cs" Line="66" Column="14" />
       <File FileName="FirstGame/Model/Enemy.cs" Line="76" Column="16" />
+<<<<<<< Updated upstream
 =======
       <File FileName="FirstGame/Model/Barrel.cs" Line="1" Column="1" />
       <File FileName="FirstGame/Controller/FirstGame.cs" Line="317" Column="66" />
+>>>>>>> Stashed changes
+=======
+      <File FileName="FirstGame/Controller/FirstGame.cs" Line="403" Column="4" />
+      <File FileName="FirstGame/Model/Player.cs" Line="1" Column="1" />
 >>>>>>> Stashed changes
     </Files>
   </MonoDevelop.Ide.Workbench>
